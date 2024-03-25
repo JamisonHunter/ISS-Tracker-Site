@@ -1,11 +1,58 @@
 {
   "Version": 1,
-  "Hash": "Gh/+5e1/KcNfoVOx1ise9zBa/0q7Ygw8Sv8qKsZf0nQ=",
+  "Hash": "+iXmXcQS01mEDenF65AtxI28YH6mmlCR+JHkR99Z5Tk=",
   "Source": "MyWebApp",
   "BasePath": "_content/MyWebApp",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "MyWebApp\\wwwroot",
+      "Source": "MyWebApp",
+      "ContentRoot": "C:\\Users\\Jamison\\Documents\\GitHub\\Mars-Weather-App\\MyWebApp\\wwwroot\\",
+      "BasePath": "_content/MyWebApp",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "C:\\Users\\Jamison\\Documents\\GitHub\\Mars-Weather-App\\MyWebApp\\wwwroot\\about.html",
+      "SourceId": "MyWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Jamison\\Documents\\GitHub\\Mars-Weather-App\\MyWebApp\\wwwroot\\",
+      "BasePath": "_content/MyWebApp",
+      "RelativePath": "about.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\about.html"
+    },
+    {
+      "Identity": "C:\\Users\\Jamison\\Documents\\GitHub\\Mars-Weather-App\\MyWebApp\\wwwroot\\index.html",
+      "SourceId": "MyWebApp",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Jamison\\Documents\\GitHub\\Mars-Weather-App\\MyWebApp\\wwwroot\\",
+      "BasePath": "_content/MyWebApp",
+      "RelativePath": "index.html",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\index.html"
+    }
+  ]
 }

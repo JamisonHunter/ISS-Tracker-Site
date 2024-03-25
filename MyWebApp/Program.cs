@@ -7,7 +7,7 @@ app.UseStaticFiles();
 app.MapGet("/about", () =>
 {
     // Read the contents of the HTML file
-    string htmlContent = System.IO.File.ReadAllText("about.html");
+    string htmlContent = System.IO.File.ReadAllText("wwwroot/about.html");
     // Set the content type to "text/html"
     return Results.Content(htmlContent, "text/html");
 });
@@ -15,7 +15,7 @@ app.MapGet("/about", () =>
 app.MapGet("/", async () =>
 {
     // Read the contents of the HTML file
-    string htmlContent = System.IO.File.ReadAllText("index.html");
+    string htmlContent = System.IO.File.ReadAllText("wwwroot/index.html");
     // Set the content type to "text/html"
     return Results.Content(htmlContent, "text/html");
 });
