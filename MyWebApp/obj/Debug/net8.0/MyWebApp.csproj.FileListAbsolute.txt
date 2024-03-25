@@ -23,3 +23,4 @@ C:\Users\Jamison\Documents\GitHub\Mars-Weather-App\MyWebApp\obj\Debug\net8.0\ref
 C:\Users\Jamison\Documents\GitHub\Mars-Weather-App\MyWebApp\obj\Debug\net8.0\MyWebApp.pdb
 C:\Users\Jamison\Documents\GitHub\Mars-Weather-App\MyWebApp\obj\Debug\net8.0\MyWebApp.genruntimeconfig.cache
 C:\Users\Jamison\Documents\GitHub\Mars-Weather-App\MyWebApp\obj\Debug\net8.0\ref\MyWebApp.dll
+C:\Users\Jamison\Documents\GitHub\Mars-Weather-App\MyWebApp\obj\Debug\net8.0\MyWebApp.sourcelink.json
