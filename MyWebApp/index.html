@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <!-- Include Leaflet library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <!-- Include Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        #map { height: 500px; }
+    </style>
+    <style>
+        .font-futura {
+            font-family: 'Futura', sans-serif; 
+        }
+    </style>
+</head>
+<body class="bg-green-900 text-white font-futura text-xl">
+    <!-- Loading overlay -->
+    <div class="overlay">
+        <div class="spinner"></div>
+    </div>
+    <header class="text-center py-4">
+        <ul class="inline">
+            <li class="mr-6 inline-block"><a href="/" class="hover:text-green-300">Home</a></li>
+            <li class="inline-block"><a href="/about" class="hover:text-green-300">About</a></li>
+        </ul>
+    </header>
+    <!-- Map container -->
+    <div id="map"></div>
+    <!-- ISS Info -->
+    <div id="iss-info" class="container mx-auto px-4 mt-4 text-xl flex flex-col lg:flex-row justify-center items-center">
+        <strong class="mr-8 mb-2 lg:mb-0">Latitude:</strong>
+        <span class="mb-2 lg:mb-0">0</span>
+        <strong class="mx-8">Longitude:</strong>
+        <span>0</span>
+        <strong class="mx-8">Timestamp:</strong>
+        <span>00:00:00</span>
+    </div>
+    <footer class="text-center py-4 pb-20 pt-10">
+        <h1 class="p-4 text-lg font-bold">Built Using</h1>
+        <div class="mr-8">
+            <img src="https://static-00.iconduck.com/assets.00/tailwind-css-icon-512x307-1v56l8ed.png" alt="Tailwind CSS Logo" class="h-12 inline-block">
+            <img src="https://static.cdnlogo.com/logos/c/68/c-sharp-350x350.png" alt="C Sharp Logo" class="h-12 inline-block mx-4">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/6/6a/JavaScript-logo.png" alt="JavaScript Logo" class="h-12 inline-block"> 
+        </div>
+    </footer>
+    
+
+    <script>
+        var map = L.map('map', {
+            minZoom: 2, 
+            maxBounds: [ 
+                [-90, -180], // Southwest corner (latitude, longitude)
+                [90, 180]    // Northeast corner (latitude, longitude)
+            ]
+        }).setView([0, 0], 2); // Centering map at (0, 0) (latitude, longitude) with zoom level 2
+
+        L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://carto.com/">Carto</a>, ' +
+                        'Tiles &copy; <a href="https://carto.com/attributions">Carto</a>'
+        }).addTo(map);
+
+        // Function to update ISS marker on the map and display info
+        async function updateISSMarker() {
+            const response = await fetch('/update-iss');
+            if (response.ok) {
+                const data = await response.json();
+                const { iss_position, timestamp } = data;
+                const { latitude, longitude } = iss_position;
+
+                // Remove existing ISS marker if any
+                if (window.issMarker) {
+                    map.removeLayer(window.issMarker);
+                }
+
+                // Add new ISS marker
+                window.issMarker = L.marker([latitude, longitude], {
+                    icon: L.icon({
+                        iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
+                        iconSize: [25, 41],
+                        iconAnchor: [12, 41],
+                        popupAnchor: [1, -34],
+                        tooltipAnchor: [16, -28],
+                        shadowSize: [41, 41]
+                    })
+                }).addTo(map);
+
+                // Update ISS info below the map
+                document.getElementById('iss-info').innerHTML = `
+                    <strong class="mr-4 mb-2 lg:mb-0">Latitude:</strong>
+                    <span class="mb-2 lg:mb-0">${latitude}</span>
+                    <strong class="mx-4">Longitude:</strong>
+                    <span>${longitude}</span>
+                    <strong class="mx-4">Timestamp:</strong>
+                    <span>${new Date(timestamp * 1000).toLocaleTimeString()}</span>
+                `;
+            }
+        }
+
+        // Updating ISS marker and info every 5 seconds.
+        setInterval(updateISSMarker, 5000);
+    </script>
+</body>
+</html>
