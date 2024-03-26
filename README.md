@@ -2,7 +2,7 @@
 # issdash.net
 Welcome! This dynamic website displays the current location of the International Space Station!
 # Motivation
-While NASA's own view of the current location of the ISS has more sophisticated graphics, I always found it difficult to zoom in. Overall, I believed that the view was not as clear as it could be. This view allows the user to zoom in quite a lot, showing a great deal of context as to concerning the location of the ISS. Maybe on a clear night one could see it far overhead using this application!
+While NASA's own view of the current location of the ISS has more sophisticated graphics, I always found it difficult to zoom in. Overall, I believed that the view was not as clear as it could be. This view allows the user to zoom in quite a lot, showing a great deal of context around the location of the ISS. Maybe on a clear night one could see it far overhead using this application!
 # Getting Started
 This website is currently being hosted on the cloud with a unique URL so getting started is as easy as following the link below!
 
