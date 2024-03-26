@@ -6,21 +6,17 @@ app.UseStaticFiles();
 
 app.MapGet("/about", () =>
 {
-    // Read the contents of the HTML file
     string htmlContent = System.IO.File.ReadAllText("wwwroot/about.html");
-    // Set the content type to "text/html"
     return Results.Content(htmlContent, "text/html");
 });
 
 app.MapGet("/", async () =>
 {
-    // Read the contents of the HTML file
     string htmlContent = System.IO.File.ReadAllText("wwwroot/index.html");
-    // Set the content type to "text/html"
     return Results.Content(htmlContent, "text/html");
 });
 
-// Define a method to fetch ISS location
+// Defining a method to fetch ISS location from API.
 async Task<string> GetISSLocation()
 {
     using var client = new HttpClient();
@@ -36,19 +32,18 @@ async Task<string> GetISSLocation()
     }
 }
 
-// Map route to continuously update ISS position
+// Mapping route to continuously update ISS position.
 app.MapGet("/update-iss", async (HttpContext context) =>
 {
     string issData = await GetISSLocation();
     if (issData != null)
     {
-        // Write ISS location data to the response
         await context.Response.WriteAsync(issData);
     }
     else
     {
-        // Handle error
-        context.Response.StatusCode = 500; // Internal Server Error
+        // Error handling.
+        context.Response.StatusCode = 500; 
         await context.Response.WriteAsync("Failed to fetch ISS location");
     }
 });

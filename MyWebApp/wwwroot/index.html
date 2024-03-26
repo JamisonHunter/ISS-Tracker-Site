@@ -19,10 +19,6 @@
     </style>
 </head>
 <body class="bg-green-900 text-white font-futura text-xl">
-    <!-- Loading overlay -->
-    <div class="overlay">
-        <div class="spinner"></div>
-    </div>
     <header class="text-center py-4">
         <ul class="inline">
             <li class="mr-6 inline-block"><a href="/" class="hover:text-green-300">Home</a></li>
@@ -57,14 +53,13 @@
                 [-90, -180], // Southwest corner (latitude, longitude)
                 [90, 180]    // Northeast corner (latitude, longitude)
             ]
-        }).setView([0, 0], 2); // Centering map at (0, 0) (latitude, longitude) with zoom level 2
+        }).setView([0, 0], 2); // Centering map at (0, 0) (latitude, longitude) with zoom level 2.
 
         L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="https://carto.com/">Carto</a>, ' +
                         'Tiles &copy; <a href="https://carto.com/attributions">Carto</a>'
         }).addTo(map);
 
-        // Function to update ISS marker on the map and display info
         async function updateISSMarker() {
             const response = await fetch('/update-iss');
             if (response.ok) {
@@ -72,12 +67,12 @@
                 const { iss_position, timestamp } = data;
                 const { latitude, longitude } = iss_position;
 
-                // Remove existing ISS marker if any
+                // Deleting existing ISS marker if one exists.
                 if (window.issMarker) {
                     map.removeLayer(window.issMarker);
                 }
 
-                // Add new ISS marker
+                // Adding new ISS marker.
                 window.issMarker = L.marker([latitude, longitude], {
                     icon: L.icon({
                         iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-blue.png',
@@ -89,7 +84,6 @@
                     })
                 }).addTo(map);
 
-                // Update ISS info below the map
                 document.getElementById('iss-info').innerHTML = `
                     <strong class="mr-4 mb-2 lg:mb-0">Latitude:</strong>
                     <span class="mb-2 lg:mb-0">${latitude}</span>
